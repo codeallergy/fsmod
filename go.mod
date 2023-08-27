@@ -1,4 +1,4 @@
-module github.com/codeallergy/fsi
+module github.com/codeallergy/fsmod
 
 go 1.17
 
