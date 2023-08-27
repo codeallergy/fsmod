@@ -3,14 +3,14 @@
  * SPDX-License-Identifier: BUSL-1.1
  */
 
-package fsi_test
+package fsmod_test
 
 import (
 	"bytes"
 	"fmt"
-	"github.com/codeallergy/fsi"
+	"github.com/sprintframework/fsmod"
 	"github.com/stretchr/testify/require"
-	"github.com/codeallergy/fs"
+	"github.com/sprintframework/fs"
 	"io"
 	"io/ioutil"
 	"os"
@@ -19,7 +19,7 @@ import (
 
 func TestJsonWriteAndRead(t *testing.T) {
 
-	fs := fsi.FileService()
+	fs := fsmod.FileService()
 
 	fd, err := ioutil.TempFile(os.TempDir(), "json-test")
 	require.NoError(t, err)
@@ -116,7 +116,7 @@ func readJsonStream(t *testing.T, reader fs.JsonReader) {
 
 func TestJsonSplit(t *testing.T) {
 
-	fs := fsi.FileService()
+	fs := fsmod.FileService()
 
 	fd, err := ioutil.TempFile(os.TempDir(), "json-test")
 	require.NoError(t, err)

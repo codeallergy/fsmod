@@ -3,7 +3,7 @@
  * SPDX-License-Identifier: BUSL-1.1
  */
 
-package fsi
+package fsmod
 
 var EmptyValues = map[string]bool {
 	"n/a": true,

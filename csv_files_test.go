@@ -3,14 +3,14 @@
  * SPDX-License-Identifier: BUSL-1.1
  */
 
-package fsi_test
+package fsmod_test
 
 import (
 	"bytes"
 	"fmt"
-	"github.com/codeallergy/fsi"
+	"github.com/sprintframework/fsmod"
 	"github.com/stretchr/testify/require"
-	"github.com/codeallergy/fs"
+	"github.com/sprintframework/fs"
 	"io"
 	"io/ioutil"
 	"os"
@@ -21,7 +21,7 @@ import (
 
 func TestCsvWriteAndRead(t *testing.T) {
 
-	fs := fsi.FileService()
+	fs := fsmod.FileService()
 
 	fd, err := ioutil.TempFile(os.TempDir(), "csv-test")
 	require.NoError(t, err)
@@ -33,14 +33,14 @@ func TestCsvWriteAndRead(t *testing.T) {
 	filePath = filePath + ".csv"
 	writeCsv(t, fs, filePath)
 	var buf bytes.Buffer
-	writeCsvStream(t, fs.NewCsvStream(&buf, false, strings.TrimSpace, fsi.PandasFriendly))
+	writeCsvStream(t, fs.NewCsvStream(&buf, false, strings.TrimSpace, fsmod.PandasFriendly))
 
 	content, err := ioutil.ReadFile(filePath)
 	require.NoError(t, err)
 	require.Equal(t, buf.Bytes(), content)
 	require.Equal(t, "123,#,#,#,#\n", string(content))
 	readCsv(t, filePath)
-	stream, err := fs.OpenCsvStream(bytes.NewReader(content), false, strings.TrimSpace, fsi.RemoveHash)
+	stream, err := fs.OpenCsvStream(bytes.NewReader(content), false, strings.TrimSpace, fsmod.RemoveHash)
 	readCsvStream(t, stream)
 
 	// Test With Header
@@ -59,9 +59,9 @@ func TestCsvWriteAndRead(t *testing.T) {
 
 func readCsv(t *testing.T, filePath string) {
 
-	fs := fsi.FileService()
+	fs := fsmod.FileService()
 
-	reader, err := fs.OpenCsvFile(filePath, strings.TrimSpace, fsi.RemoveHash)
+	reader, err := fs.OpenCsvFile(filePath, strings.TrimSpace, fsmod.RemoveHash)
 	require.NoError(t, err)
 
 	record, err := reader.Read()
@@ -92,9 +92,9 @@ func readCsvStream(t *testing.T, reader fs.CsvStream) {
 
 func readCsvWithHeader(t *testing.T, filePath string) {
 
-	fs := fsi.FileService()
+	fs := fsmod.FileService()
 
-	reader, err := fs.OpenCsvFile(filePath, strings.TrimSpace, fsi.RemoveHash)
+	reader, err := fs.OpenCsvFile(filePath, strings.TrimSpace, fsmod.RemoveHash)
 	require.NoError(t, err)
 
 	file, err := reader.ReadHeader()
@@ -129,7 +129,7 @@ func readCsvWithHeader(t *testing.T, filePath string) {
 
 func writeCsv(t *testing.T, fs fs.FileService, filePath string) {
 
-	csv, err := fs.NewCsvFile(filePath, strings.TrimSpace, fsi.PandasFriendly)
+	csv, err := fs.NewCsvFile(filePath, strings.TrimSpace, fsmod.PandasFriendly)
 	require.NoError(t, err)
 
 	writeCsvStream(t, csv)
@@ -146,9 +146,9 @@ func writeCsvStream(t *testing.T, csv fs.CsvWriter) {
 
 func writeCsvWithHeader(t *testing.T, filePath string) {
 
-	fs := fsi.FileService()
+	fs := fsmod.FileService()
 
-	csv, err := fs.NewCsvFile(filePath, strings.TrimSpace, fsi.PandasFriendly)
+	csv, err := fs.NewCsvFile(filePath, strings.TrimSpace, fsmod.PandasFriendly)
 	require.NoError(t, err)
 
 	err = csv.Write("name ", " value ")
@@ -163,7 +163,7 @@ func writeCsvWithHeader(t *testing.T, filePath string) {
 
 func TestCsvSplit(t *testing.T) {
 
-	fs := fsi.FileService()
+	fs := fsmod.FileService()
 
 	fd, err := ioutil.TempFile(os.TempDir(), "csv-test")
 	require.NoError(t, err)

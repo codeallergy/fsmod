@@ -4,7 +4,7 @@
 // 	protoc        v3.13.0
 // source: domain.proto
 
-package fsi_test
+package fsmod_test
 
 import (
 	protoreflect "google.golang.org/protobuf/reflect/protoreflect"

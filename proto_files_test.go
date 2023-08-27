@@ -3,13 +3,13 @@
  * SPDX-License-Identifier: BUSL-1.1
  */
 
-package fsi_test
+package fsmod_test
 
 import (
 	"bytes"
 	"fmt"
-	"github.com/codeallergy/fs"
-	"github.com/codeallergy/fsi"
+	"github.com/sprintframework/fs"
+	"github.com/sprintframework/fsmod"
 	"github.com/stretchr/testify/require"
 	"io"
 	"io/ioutil"
@@ -19,7 +19,7 @@ import (
 
 func TestProtoWriteAndRead(t *testing.T) {
 
-	fs := fsi.FileService()
+	fs := fsmod.FileService()
 
 	fd, err := ioutil.TempFile(os.TempDir(), "proto-test")
 	require.NoError(t, err)
@@ -112,7 +112,7 @@ func readProtoStream(t *testing.T, reader fs.ProtoReader) {
 
 func TestProtoSplit(t *testing.T) {
 
-	fs := fsi.FileService()
+	fs := fsmod.FileService()
 
 	fd, err := ioutil.TempFile(os.TempDir(), "proto-test")
 	require.NoError(t, err)

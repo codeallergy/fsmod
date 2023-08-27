@@ -3,10 +3,10 @@
  * SPDX-License-Identifier: BUSL-1.1
  */
 
-package fsi
+package fsmod
 
 import (
-	"github.com/codeallergy/fs"
+	"github.com/sprintframework/fs"
 	"google.golang.org/protobuf/encoding/protojson"
 	"github.com/grpc-ecosystem/grpc-gateway/v2/runtime"
 )

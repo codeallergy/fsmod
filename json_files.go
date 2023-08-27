@@ -3,13 +3,13 @@
  * SPDX-License-Identifier: BUSL-1.1
  */
 
-package fsi
+package fsmod
 
 import (
 	"bufio"
 	"compress/gzip"
 	"encoding/json"
-	"github.com/codeallergy/fs"
+	"github.com/sprintframework/fs"
 	"github.com/pkg/errors"
 	"io"
 	"os"

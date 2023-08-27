@@ -3,14 +3,14 @@
  * SPDX-License-Identifier: BUSL-1.1
  */
 
-package fsi
+package fsmod
 
 import (
 	"bufio"
 	"bytes"
 	"compress/gzip"
 	"encoding/binary"
-	"github.com/codeallergy/fs"
+	"github.com/sprintframework/fs"
 	"google.golang.org/protobuf/proto"
 	"github.com/pkg/errors"
 	"io"
