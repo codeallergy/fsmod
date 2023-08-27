@@ -1,6 +1,6 @@
 # fsmod
 
-![build workflow](https://github.com/sprintframework/fsmod/actions/workflows/build.yaml/badge.svg)!
+![build workflow](https://github.com/sprintframework/fsmod/actions/workflows/build.yaml/badge.svg)
 
 File Service Impl
 
